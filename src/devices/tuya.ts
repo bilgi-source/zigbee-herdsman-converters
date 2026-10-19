@@ -4712,6 +4712,23 @@ export const definitions: DefinitionWithExtend[] = [
         },
     },
     {
+        fingerprint: tuya.fingerprint("TS0601", ["_TZE204_mqij5jas"]),
+        model: "JKD-839Z",
+        vendor: "Jikaida",
+        description: "Gas sensor",
+        extend: [tuya.modernExtend.tuyaBase({dp: true})],
+        exposes: [e.gas(), tuya.exposes.gasValue().withUnit("LEL"), tuya.exposes.selfTestResult(), tuya.exposes.faultAlarm(), tuya.exposes.silence()],
+        meta: {
+            tuyaDatapoints: [
+                [1, "gas", tuya.valueConverter.trueFalse0],
+                [2, "gas_value", tuya.valueConverter.divideBy10],
+                [9, "self_test_result", tuya.valueConverter.selfTestResult],
+                [11, "fault_alarm", tuya.valueConverter.trueFalse1],
+                [16, "silence", tuya.valueConverter.raw],
+            ],
+        },
+    },
+    {
         fingerprint: tuya.fingerprint("TS0601", ["_TZE200_ioxkjvuz"]),
         model: "GA01",
         vendor: "Meian",
